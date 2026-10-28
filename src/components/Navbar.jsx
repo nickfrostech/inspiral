@@ -4,6 +4,7 @@ import { LiquidGlass } from 'quick-liquid/react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from './ThemeContext';
 import { triggerFloralBurst } from '../utils/floweringBurst';
+import { asset } from '../utils/asset';
 
 const NAV_LINKS = [
    { name: 'Home', target: null },
@@ -92,7 +93,7 @@ export default function Navbar() {
                   }`}
                >
                   <img
-                     src="/flower-accent.png"
+                     src={asset('/flower-accent.png')}
                      alt=""
                      className="w-7 h-7 object-contain filter drop-shadow-[0_0_6px_rgba(212,175,55,0.4)]"
                   />

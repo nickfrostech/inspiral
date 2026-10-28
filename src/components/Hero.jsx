@@ -3,25 +3,26 @@ import { motion, AnimatePresence } from 'motion/react';
 import { LiquidGlass } from 'quick-liquid/react';
 import { useTheme } from './ThemeContext';
 import { triggerFloralBurst } from '../utils/floweringBurst';
+import { asset } from '../utils/asset';
 
 const SCENES = [
    {
       id: 'beach',
-      src: '/hero-beach.jpg',
+      src: asset('/hero-beach.jpg'),
       alt: 'Luxury Beach Wedding by Inspiral Events',
       panFrom: '0%',
       panTo: '-5%',
    },
    {
       id: 'hall',
-      src: '/hero-hall.jpg',
+      src: asset('/hero-hall.jpg'),
       alt: 'Grand Banquet Hall by Inspiral Events',
       panFrom: '-5%',
       panTo: '0%',
    },
    {
       id: 'party',
-      src: '/hero-party.jpg',
+      src: asset('/hero-party.jpg'),
       alt: 'Night Gala & Party Celebration by Inspiral Events',
       panFrom: '0%',
       panTo: '-5%',

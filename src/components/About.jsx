@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useSpring } from 'motion/react';
 import { LiquidGlass } from 'quick-liquid/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
+import { asset } from '../utils/asset';
 
 const METRICS = [
    { target: 10, suffix: '+', label: 'Years of Excellence', sub: 'Founded in Lagos, 2014' },
@@ -121,7 +122,7 @@ export default function About() {
                {/* Botanical Magnolia Flower Accent (Sprouting & Blooming organically from root to top) */}
                <div className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 md:-top-20 md:-right-10 w-28 sm:w-36 md:w-44 pointer-events-none z-20 select-none">
                   <motion.img
-                     src="/flower-accent.png"
+                     src={asset('/flower-accent.png')}
                      alt="Botanical Flower Accent"
                      initial={{
                         opacity: 0,
@@ -234,7 +235,7 @@ export default function About() {
                >
                   <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 w-full h-full min-h-[300px] sm:min-h-[360px] lg:min-h-0">
                      <img
-                        src="/about-atelier.jpg"
+                        src={asset('/about-atelier.jpg')}
                         alt="Inspiral Events Atelier Curation"
                         className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
                      />

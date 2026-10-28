@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
+import { asset } from '../utils/asset';
 
 const TESTIMONIALS = [
    {
@@ -9,7 +10,7 @@ const TESTIMONIALS = [
          'Managing over 700 guests without a single gatecrasher was something we thought was impossible in Lagos. Inspiral made our wedding completely stress-free. Everything started right on time.',
       name: 'Tunde & Folake Adeleke',
       event: 'Traditional & White Wedding, Victoria Island, Lagos',
-      avatar: '/avatar-1.jpg',
+      avatar: asset('/avatar-1.jpg'),
       rating: 5,
    },
    {
@@ -18,7 +19,7 @@ const TESTIMONIALS = [
          'Handling diplomats, governors, and partners requires serious order. Inspiral managed protocol, VIP security, and our stage setup with total class.',
       name: 'Dr. Amina Bello',
       event: 'Annual Foundation Gala, Transcorp Hilton, Abuja',
-      avatar: '/avatar-2.jpg',
+      avatar: asset('/avatar-2.jpg'),
       rating: 5,
    },
    {
@@ -27,7 +28,7 @@ const TESTIMONIALS = [
          'The decor, lighting, and sound completely transformed the venue. My guests are still talking about how well-organized the party was. Worth every kobo.',
       name: 'Chief Emeka Okoli',
       event: '50th Birthday Celebration, Eko Hotel, Lagos',
-      avatar: '/avatar-3.jpg',
+      avatar: asset('/avatar-3.jpg'),
       rating: 5,
    },
    {
@@ -36,7 +37,7 @@ const TESTIMONIALS = [
          'Boat logistics, beach setup, power backup, and food service were coordinated without a single issue. Inspiral handled our entire weekend flawlessly.',
       name: 'Osas & Beverly Ighodaro',
       event: 'Destination Beach Wedding, Ilashe, Lagos',
-      avatar: '/avatar-4.jpg',
+      avatar: asset('/avatar-4.jpg'),
       rating: 5,
    },
 ];
@@ -139,13 +140,13 @@ export default function Testimonials() {
                      {/* The Quote with Flower at the beginning and end */}
                      <p className="font-serif italic text-sm sm:text-lg md:text-xl lg:text-2xl text-[#FAF9F5] leading-relaxed font-light">
                         <img
-                           src="/flower-accent.png"
+                           src={asset('/flower-accent.png')}
                            alt=""
                            className="inline-block w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain mr-1.5 sm:mr-2 -mt-1 select-none filter drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
                         />
                         {current.quote}
                         <img
-                           src="/flower-accent.png"
+                           src={asset('/flower-accent.png')}
                            alt=""
                            className="inline-block w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain ml-1.5 sm:ml-2 -mt-1 select-none filter drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
                         />
