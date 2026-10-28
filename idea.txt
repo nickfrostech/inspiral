@@ -1,0 +1,36 @@
+# Inspiral Events - Core Creative & Technical Foundation
+
+Colors:
+- Canvas/White: Pure White (#FFFFFF) & Warm Alabaster (#FAF9F5)
+- Botanical Greens: Deep Forest (#0E291E), Botanical Emerald (#1B4332), Soft Sage (#D8E2DC)
+- Golden Yellows: Champagne Gold (#D4AF37), Radiant Ochre (#E5B842), Pale Gold Luster (#FDF8EC)
+
+Typography:
+- Display/Headlines: Dahlia (Art Nouveau botanical display serif) / Fallback: Cormorant Garamond
+- Body/UI: Plus Jakarta Sans (clean, geometric, high readability)
+
+Glass Effects:
+- Refractive Liquid Glass using QuickLiquid (<LiquidGlass>, <LiquidTabBar>, liquidPress)
+- Applied to: Navigation bar, Category tab switcher, floating hero CTAs, and media badge tags
+- Desktop: Optical refraction with subtle chromatic dispersion (0.18) and Snell's law bezel bending
+- Mobile fallback: CSS backdrop-blur-md with delicate 1px specular white borders for 60fps performance
+
+Flowering & Organic Micro-Interactions:
+- Flowering using: Framer Motion ('motion/react') SVG organic petal unfurl on hover & radial spore particle bursts on click
+- Staggered blossoming reveals on page scroll (staggerChildren: 0.12s, ease: [0.16, 1, 0.3, 1])
+
+Layout & Whitespace:
+- Generous editorial whitespace (clamp-based padding py-24 to py-36)
+- Asymmetrical luxury grids inspired by Kinfolk & architectural monographs
+- Rounded hierarchy:
+  - Buttons/Pills/Badges: rounded-full (9999px)
+  - Cards & Content Blocks: rounded-3xl (24px to 32px)
+  - Modals & Hero Frames: rounded-[2.5rem] (40px)
+
+Tech Stack:
+- Vite + React (JavaScript / JSX)
+- Package manager: pnpm
+- Tailwind CSS (configured with darkMode: 'class')
+- motion ('motion/react') for physics-based spring animations
+- Native Dark Mode from day one: Velvet Forest / Obsidian canvas with luminous emerald and glowing champagne gold
+

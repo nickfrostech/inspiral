@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+   --font-serif: 'Cormorant Garamond', 'Dahlia', Georgia, serif;
+   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+   --color-canvas-base: var(--canvas-bg);
+   --color-canvas-pure: #FFFFFF;
+   --color-canvas-stone: #F3F1EC;
+   --color-canvas-dark: #07150F;
+   --color-canvas-darkcard: #0E241B;
+   --color-canvas-darksubtle: #143327;
+
+   --color-emerald-deep: #0E291E;
+   --color-emerald-botanic: #1B4332;
+   --color-emerald-leaf: #2D6A4F;
+   --color-emerald-sage: #D8E2DC;
+   --color-emerald-tint: #EDF2EE;
+
+   --color-gold-champagne: #D4AF37;
+   --color-gold-radiant: #E5B842;
+   --color-gold-ochre: #B8860B;
+   --color-gold-sheen: #FDF8EC;
+
+   --color-charcoal: #1F2421;
+   --color-taupe: #6B726E;
+   --color-ivory: #F5F5F0;
+
+   --radius-pebble: 2rem;
+   --radius-fluid: 2.5rem;
+}
+
+/* ==========================================================================
+   CSS-DRIVEN THEME & QUICKLIQUID GLASS CONFIGURATION
+   ========================================================================== */
+
+:root {
+   /* Canvas & Text Tokens - Warm Travertine Stone / Architectural Oat Linen
+      Provides rich tone depth so white glass refraction pops and page doesn't look flat white */
+   --canvas-bg: #E6DFD1;
+   --canvas-card: #DAD2C3;
+   --text-primary: #1A201C;
+   --text-secondary: #58605B;
+   --border-subtle: rgba(27, 67, 50, 0.12);
+
+   /* Tactile Frosted Glass Engine Tokens (Light Appearance) */
+   --liquid-tint: 255, 255, 255;
+   --liquid-tint-opacity: 0.65;
+   --liquid-blur: 24px;
+   --liquid-saturation: 180%;
+   --liquid-border: rgba(255, 255, 255, 0.85);
+   --liquid-rim-top: rgba(255, 255, 255, 0.95);
+   --liquid-rim-bottom: rgba(212, 175, 55, 0.35);
+   --liquid-shadow: 0 20px 45px -12px rgba(27, 67, 50, 0.10), 0 6px 16px -4px rgba(27, 67, 50, 0.05);
+   --liquid-ambient-glow: 0 0 0 transparent;
+   --liquid-refract-bezel: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(212, 175, 55, 0.45) 40%, rgba(255, 255, 255, 0.25) 75%, rgba(27, 67, 50, 0.25) 100%);
+}
+
+/* Dark Mode Theme Overrides (Driven by .dark class or system prefers-color-scheme) */
+:root.dark {
+   --canvas-bg: #07150F;
+   --canvas-card: #0D241A;
+   --text-primary: #F5F5F0;
+   --text-secondary: rgba(216, 226, 220, 0.7);
+   --border-subtle: rgba(255, 255, 255, 0.08);
+
+   /* QuickLiquid Glass Engine Tokens (Dark Appearance)
+     - tint: deep botanical smoke (14, 36, 27)
+     - ambient glow replaces drop shadow per QuickLiquid spec */
+   --liquid-tint: 14, 36, 27;
+   --liquid-tint-opacity: 0.45;
+   --liquid-blur: 20px;
+   --liquid-saturation: 180%;
+   --liquid-border: rgba(255, 255, 255, 0.16);
+   --liquid-rim-top: rgba(240, 196, 83, 0.45);
+   --liquid-rim-bottom: rgba(45, 106, 79, 0.35);
+   --liquid-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.65);
+   --liquid-ambient-glow: 0 0 36px -4px rgba(45, 106, 79, 0.30);
+   --liquid-refract-bezel: linear-gradient(135deg, rgba(240, 196, 83, 0.7) 0%, rgba(255, 255, 255, 0.25) 35%, rgba(45, 106, 79, 0.45) 75%, rgba(7, 21, 15, 0.7) 100%);
+}
+
+@layer base {
+   html {
+      scroll-behavior: smooth;
+      background-color: var(--canvas-bg);
+      color: var(--text-primary);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: clip;
+   }
+
+   body {
+      min-height: 100vh;
+      overflow-x: clip;
+      background-color: transparent;
+   }
+}
+
+/* ==========================================================================
+   QUICKLIQUID TRANSLUCENT GLASS ENGINE (CSS Implementation)
+   ========================================================================== */
+
+/**
+ * .liquid-glass
+ * Physically-derived translucent glass that naturally reflects both light and dark.
+ * Never milky or opaque; backdrop colors & lights shine directly through the glass slab.
+ */
+.liquid-glass {
+   background: rgba(var(--liquid-tint), var(--liquid-tint-opacity));
+   backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation));
+   -webkit-backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation));
+   border: 1px solid var(--liquid-border);
+   box-shadow:
+      var(--liquid-shadow),
+      var(--liquid-ambient-glow),
+      inset 0 1px 1px 0 var(--liquid-rim-top),
+      inset 0 -1px 2px 0 var(--liquid-rim-bottom);
+   transition:
+      background 0.4s ease,
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      backdrop-filter 0.4s ease;
+}
+
+/* Material Presets per QuickLiquid configuration table */
+.liquid-glass-clear {
+   --liquid-blur: 3px;
+   --liquid-tint-opacity: 0.03;
+}
+
+.liquid-glass-thin {
+   --liquid-blur: 6px;
+   --liquid-tint-opacity: 0.05;
+}
+
+.liquid-glass-regular {
+   --liquid-blur: 14px;
+   --liquid-tint-opacity: 0.08;
+}
+
+.liquid-glass-thick {
+   --liquid-blur: 22px;
+   --liquid-tint-opacity: 0.13;
+}
+
+.liquid-glass-ultra {
+   --liquid-blur: 30px;
+   --liquid-tint-opacity: 0.17;
+}
+
+.liquid-glass-adaptive {
+   --liquid-blur: 12px;
+   --liquid-tint-opacity: 0.06;
+}
+
+/**
+ * Refractive Bezel (Snell's Law rim refraction simulation)
+ * Renders the Apple-style two-lobe conic rim ring with zero layout shift.
+ */
+.refractive-bezel {
+   position: relative;
+}
+
+.refractive-bezel::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   border-radius: inherit;
+   padding: 1px;
+   background: var(--liquid-refract-bezel);
+   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+   -webkit-mask-composite: xor;
+   mask-composite: exclude;
+   pointer-events: none;
+   transition: background 0.4s ease;
+}

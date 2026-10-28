@@ -1,0 +1,117 @@
+# Build a Distinctive Event Management Website
+
+Act as a senior frontend engineer, creative web designer, and UX specialist.
+
+Build a production-quality portfolio and client-enquiry website for an event management business that handles multiple types of events.
+
+## Technology
+
+- Next.js with the App Router
+- React and TypeScript
+- Tailwind CSS
+- Reusable, maintainable components
+- Use pnpm for package management
+- Use the current stable versions and follow their official documentation
+
+## Before implementation
+
+Review the existing project structure and installed dependencies before making changes.
+
+Use the approved research findings, brand assets, design references, and selected creative direction as the source of truth. If critical business information is missing, ask concise questions or use clearly identified placeholders.
+
+Do not invent client testimonials, event history, client logos, awards, or business claims.
+
+## Design requirements
+
+Create a visually distinctive, polished website that feels intentionally art-directed rather than generated from a generic business template.
+
+Prioritize:
+- Strong typography and a clear visual hierarchy
+- Excellent event photography presentation
+- Thoughtful spacing and editorial composition
+- A coherent, restrained color system
+- Consistent components and interaction patterns
+- Responsive layouts designed for mobile first
+- Subtle, purposeful motion
+- Clear calls to action without aggressive sales tactics
+
+Avoid repetitive card grids, oversized gradients, unnecessary decorative elements, excessive rounded containers, and animations that compromise performance or accessibility.
+
+Use real client assets when supplied. If images are unavailable, use clearly replaceable placeholders rather than pretending stock images represent the client's work.
+
+## Required pages
+
+1. Home: Brand positioning, signature imagery, services, featured portfolio, trust signals, and enquiry CTA.
+2. Services: Clear descriptions of the services the business actually offers.
+3. Portfolio: Categorized projects with useful filtering and individual event case studies.
+4. About: Business story, approach, and genuine credentials.
+5. Contact/Enquire: Functional enquiry form and alternative contact methods.
+
+Create additional pages only when justified by the research.
+
+## Portfolio functionality
+
+Build reusable portfolio components and data structures.
+
+Each event entry should support:
+- Title and slug
+- Event category
+- Event date, where appropriate
+- Location, where appropriate
+- Description and the client's role
+- Cover image and supporting photographs
+- Optional venue, collaborators, and event details
+
+Support category filtering, useful image captions, accessible gallery controls, and dedicated project pages.
+
+## Enquiry functionality
+
+Create a validated enquiry form that collects:
+- Name and contact details
+- Event type
+- Event date or preferred date range
+- Location
+- Estimated guest count
+- Services requested
+- Additional event details
+
+Include loading, success, and error states. Implement a real server-side submission flow with spam protection and appropriate validation. Do not simulate successful submissions or expose secrets in client-side code.
+
+Keep the enquiry delivery mechanism configurable so an email service or database can be integrated without restructuring the entire website.
+
+Provide an optional WhatsApp contact action using the client's actual contact details.
+
+## Technical quality
+
+- Use Next.js Image for appropriate image optimization.
+- Add page-specific metadata and Open Graph support.
+- Generate a sitemap and robots.txt where appropriate.
+- Use semantic HTML and accessible navigation.
+- Respect reduced-motion preferences.
+- Optimize loading performance and avoid layout shifts.
+- Keep server and client components appropriately separated.
+- Ensure forms and interactive elements work with keyboard navigation.
+- Use environment variables for secrets.
+- Avoid unnecessary dependencies and client-side JavaScript.
+- Use real content structures rather than hardcoding repeated portfolio markup.
+
+## Implementation process
+
+1. Establish the project structure and design tokens.
+2. Build the shared layout and navigation.
+3. Implement the homepage and core reusable components.
+4. Add services, portfolio, case-study, and enquiry pages.
+5. Implement functional form submission and contact actions.
+6. Test responsive layouts, accessibility, and interactions.
+7. Run linting, type checks, and production builds.
+8. Fix errors and report any incomplete functionality.
+
+Build the website in coherent stages. Do not stop after producing a static homepage or a nonfunctional visual mockup.
+
+## Deliverables
+
+Provide the working implementation, a concise description of the design decisions, required environment variables, setup instructions, and a list of any client information or assets still needed.
+
+The finished website should be visually distinctive, fast, maintainable, and effective at converting visitors into genuine client enquiries.
+
+
