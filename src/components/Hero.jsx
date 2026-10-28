@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'motion/react';
 import { LiquidGlass } from 'quick-liquid/react';
 import { useTheme } from './ThemeContext';
 import { triggerFloralBurst } from '../utils/floweringBurst';
@@ -30,16 +30,29 @@ const SCENES = [
 ];
 
 export default function Hero() {
+   const heroRef = useRef(null);
+   const isInView = useInView(heroRef, { margin: '0px' });
    const [currentScene, setCurrentScene] = useState(0);
+   const [isMobile, setIsMobile] = useState(false);
    const { isDark } = useTheme();
 
-   // Automatic video-like background scene transition (cycles every 6.5s)
    useEffect(() => {
+      const checkMobile = () => {
+         setIsMobile(window.innerWidth < 768);
+      };
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+   }, []);
+
+   // Automatic slideshow: strictly pauses when user scrolls past Hero section or switches tabs
+   useEffect(() => {
+      if (!isInView) return;
       const timer = setInterval(() => {
          setCurrentScene((prev) => (prev + 1) % SCENES.length);
       }, 6500);
       return () => clearInterval(timer);
-   }, []);
+   }, [isInView]);
 
    const handleScrollDown = () => {
       window.scrollTo({
@@ -49,26 +62,37 @@ export default function Hero() {
    };
 
    return (
-      <section className="relative w-full h-screen min-h-[660px] flex flex-col justify-between overflow-hidden text-ivory">
+      <section
+         ref={heroRef}
+         className="relative w-full h-screen min-h-[660px] flex flex-col justify-between overflow-hidden text-ivory"
+      >
          {/* =========================================================================
-          BACKGROUND VIDEO-SYNC SLIDESHOW (Sideways Camera Tracking Motion)
+          BACKGROUND VIDEO-SYNC SLIDESHOW (Strictly paused & hidden when scrolled away)
           ========================================================================= */}
-         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <AnimatePresence initial={false}>
-               <motion.img
-                  key={currentScene}
-                  src={SCENES[currentScene].src}
-                  alt={SCENES[currentScene].alt}
-                  className="absolute inset-y-0 -left-[5%] w-[110%] h-full object-cover object-center max-w-none"
-                  initial={{ opacity: 0, x: SCENES[currentScene].panFrom }}
-                  animate={{ opacity: 1, x: SCENES[currentScene].panTo }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                     opacity: { duration: 1.8, ease: 'easeInOut' },
-                     x: { duration: 7.2, ease: 'linear' },
-                  }}
-               />
-            </AnimatePresence>
+         <div
+            className="absolute inset-0 overflow-hidden pointer-events-none transition-opacity duration-300"
+            style={{
+               visibility: isInView ? 'visible' : 'hidden',
+               willChange: isInView ? 'opacity, transform' : 'auto',
+            }}
+         >
+            {isInView && (
+               <AnimatePresence initial={false}>
+                  <motion.img
+                     key={currentScene}
+                     src={SCENES[currentScene].src}
+                     alt={SCENES[currentScene].alt}
+                     className="absolute inset-y-0 -left-[5%] w-[110%] h-full object-cover object-center max-w-none"
+                     initial={isMobile ? { opacity: 0 } : { opacity: 0, x: SCENES[currentScene].panFrom }}
+                     animate={isMobile ? { opacity: 1 } : { opacity: 1, x: SCENES[currentScene].panTo }}
+                     exit={{ opacity: 0 }}
+                     transition={{
+                        opacity: { duration: 1.4, ease: 'easeInOut' },
+                        x: isMobile ? undefined : { duration: 7.2, ease: 'linear' },
+                     }}
+                  />
+               </AnimatePresence>
+            )}
 
             {/* Ambient Warm Golden & Botanical Emerald Vignette Overlays */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/30 to-black/80" />
@@ -156,9 +180,9 @@ export default function Hero() {
                </span>
 
                <motion.div
-                  animate={{ y: [0, 6, 0] }}
+                  animate={isInView ? { y: [0, 6, 0] } : { y: 0 }}
                   transition={{
-                     repeat: Infinity,
+                     repeat: isInView ? Infinity : 0,
                      duration: 2.2,
                      ease: 'easeInOut',
                   }}
