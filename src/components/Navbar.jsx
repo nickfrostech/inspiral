@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { LiquidGlass } from 'quick-liquid/react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from './ThemeContext';
 import { triggerFloralBurst } from '../utils/floweringBurst';
@@ -128,25 +127,13 @@ export default function Navbar() {
                                  {isActive && (
                                     <motion.div
                                        layoutId="activeHeroNavGlass"
-                                       className="absolute inset-0 pointer-events-none"
+                                       className="absolute inset-0 rounded-full bg-white/15 backdrop-blur-md border border-white/25 shadow-[0_4px_20px_rgba(0,0,0,0.15)] pointer-events-none"
                                        transition={{
                                           type: 'spring',
                                           stiffness: 380,
                                           damping: 30,
                                        }}
-                                    >
-                                       <LiquidGlass
-                                          config={{
-                                             appearance: isDark ? 'dark' : 'light',
-                                             material: 'clear',
-                                             dynamicLighting: true,
-                                             borderRadius: 30,
-                                             edgeHighlight: 0.7,
-                                             specularStrength: 0.3,
-                                          }}
-                                          className="w-full h-full rounded-full shadow-lg"
-                                       />
-                                    </motion.div>
+                                    />
                                  )}
                                  <span className="relative z-10">{item.name}</span>
                               </button>
@@ -182,25 +169,13 @@ export default function Navbar() {
                                  {isActive && (
                                     <motion.div
                                        layoutId="activeHeroNavGlass"
-                                       className="absolute inset-0 pointer-events-none"
+                                       className="absolute inset-0 rounded-full bg-white/15 backdrop-blur-md border border-white/25 shadow-[0_4px_20px_rgba(0,0,0,0.15)] pointer-events-none"
                                        transition={{
                                           type: 'spring',
                                           stiffness: 380,
                                           damping: 30,
                                        }}
-                                    >
-                                       <LiquidGlass
-                                          config={{
-                                             appearance: isDark ? 'dark' : 'light',
-                                             material: 'clear',
-                                             dynamicLighting: true,
-                                             borderRadius: 30,
-                                             edgeHighlight: 0.7,
-                                             specularStrength: 0.3,
-                                          }}
-                                          className="w-full h-full rounded-full shadow-lg"
-                                       />
-                                    </motion.div>
+                                    />
                                  )}
                                  <span className="relative z-10">{item.name}</span>
                               </button>

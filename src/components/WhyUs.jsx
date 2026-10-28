@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { LiquidGlass } from 'quick-liquid/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
 import { asset } from '../utils/asset';
 
@@ -279,21 +278,7 @@ export default function WhyUs() {
                      onClick={(e) => triggerFloralBurst(e)}
                      className="cursor-pointer h-full"
                   >
-                     <LiquidGlass
-                        config={{
-                           appearance: 'light',
-                           material: 'clear',
-                           backdropLuminance: 1,
-                           elevation: 0,
-                           tint: '255, 255, 255',
-                           tintOpacity: 0.03,
-                           dynamicLighting: true,
-                           borderRadius: 20,
-                           edgeHighlight: 0.5,
-                           specularStrength: 0.25,
-                        }}
-                        className="h-full p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white border border-[#E8E4DC] flex flex-col justify-between"
-                     >
+                     <div className="h-full p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white border border-[#E8E4DC] flex flex-col justify-between hover:border-gold-champagne/60 transition-colors shadow-sm">
                         <div>
                            {/* Photo Box (Clean, No dark gradient shade) */}
                            <div className="relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden mb-3 sm:mb-4 border border-[#E8E4DC] bg-white">
@@ -314,7 +299,7 @@ export default function WhyUs() {
                               {feature.description}
                            </p>
                         </div>
-                     </LiquidGlass>
+                     </div>
                   </motion.div>
                ))}
             </div>

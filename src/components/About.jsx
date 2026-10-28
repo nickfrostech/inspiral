@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useSpring } from 'motion/react';
-import { LiquidGlass } from 'quick-liquid/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
 import { asset } from '../utils/asset';
 
@@ -88,17 +87,7 @@ export default function About() {
                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                className="relative w-full"
             >
-               <LiquidGlass
-                  config={{
-                     appearance: 'dark',
-                     material: 'clear',
-                     dynamicLighting: true,
-                     borderRadius: 24,
-                     edgeHighlight: 0.85,
-                     specularStrength: 0.35,
-                  }}
-                  className="p-1.5 sm:p-3 rounded-2xl sm:rounded-3xl shadow-2xl relative z-10"
-               >
+               <div className="p-1.5 sm:p-3 rounded-2xl sm:rounded-3xl shadow-2xl relative z-10 bg-white/6 backdrop-blur-xl border border-white/15">
                   <div className="grid grid-cols-2 lg:grid-cols-4">
                      {METRICS.map((metric, idx) => (
                         <div
@@ -117,7 +106,7 @@ export default function About() {
                         </div>
                      ))}
                   </div>
-               </LiquidGlass>
+               </div>
 
                {/* Botanical Magnolia Flower Accent (Sprouting & Blooming organically from root to top) */}
                <div className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 md:-top-20 md:-right-10 w-28 sm:w-36 md:w-44 pointer-events-none z-20 select-none">
@@ -176,20 +165,12 @@ export default function About() {
                      We bring world-class planning and production to your milestone events—from luxury traditional and white weddings to high-profile corporate galas. Zero stress, perfect execution.
                   </p>
 
-                  {/* The Three Pillars using LiquidGlass */}
+                  {/* The Three Pillars using High-Performance CSS Glass */}
                   <div className="pt-2 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5">
                      {PILLARS.map((pillar) => (
-                        <LiquidGlass
+                        <div
                            key={pillar.num}
-                           config={{
-                              appearance: 'dark',
-                              material: 'clear',
-                              dynamicLighting: true,
-                              borderRadius: 20,
-                              edgeHighlight: 0.75,
-                              specularStrength: 0.3,
-                           }}
-                           className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl shadow-xl space-y-1.5 sm:space-y-2 group transition-all"
+                           className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl shadow-xl space-y-1.5 sm:space-y-2 group transition-all bg-white/6 backdrop-blur-md border border-white/10 hover:border-gold-radiant/40"
                         >
                            <p className="font-serif text-lg text-gold-radiant font-light">
                               {pillar.num}
@@ -200,28 +181,18 @@ export default function About() {
                            <p className="font-sans text-xs text-ivory/80 font-light leading-relaxed">
                               {pillar.desc}
                            </p>
-                        </LiquidGlass>
+                        </div>
                      ))}
                   </div>
 
-                  {/* Action Button using LiquidGlass */}
+                  {/* Action Button using Hardware-Accelerated CSS Glass */}
                   <div className="pt-3">
-                     <LiquidGlass
-                        as="button"
-                        config={{
-                           appearance: 'light',
-                           material: 'clear',
-                           dynamicLighting: true,
-                           borderRadius: 30,
-                           edgeHighlight: 0.7,
-                           specularStrength: 0.3,
-                        }}
-                        liquidPress={{ scale: 0.94, squish: 0.03 }}
+                     <button
                         onClick={(e) => triggerFloralBurst(e)}
-                        className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-xs font-sans uppercase tracking-[0.2em] font-semibold text-white cursor-pointer shadow-xl hover:border-gold-champagne/60 transition-colors"
+                        className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-xs font-sans uppercase tracking-[0.2em] font-semibold text-white bg-white/12 hover:bg-white/20 backdrop-blur-md border border-white/30 hover:border-gold-champagne/80 cursor-pointer shadow-xl transition-all duration-300 active:scale-95"
                      >
                         Explore Our Disciplines
-                     </LiquidGlass>
+                     </button>
                   </div>
                </motion.div>
 
@@ -241,26 +212,16 @@ export default function About() {
                      />
                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-                     {/* Floating Translucent LiquidGlass Media Tag */}
+                     {/* Floating Translucent CSS Glass Media Tag */}
                      <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6">
-                        <LiquidGlass
-                           config={{
-                              appearance: 'light',
-                              material: 'clear',
-                              dynamicLighting: true,
-                              borderRadius: 20,
-                              edgeHighlight: 0.7,
-                              specularStrength: 0.3,
-                           }}
-                           className="p-3 sm:p-4 rounded-xl sm:rounded-2xl text-ivory space-y-1"
-                        >
+                        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl text-ivory space-y-1 bg-black/50 backdrop-blur-md border border-white/20 shadow-lg">
                            <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-gold-radiant font-semibold">
                               Signature Production
                            </p>
                            <p className="font-serif italic text-base leading-tight text-white">
                               Where spatial design becomes living memory.
                            </p>
-                        </LiquidGlass>
+                        </div>
                      </div>
                   </div>
                </motion.div>

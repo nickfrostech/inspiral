@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { LiquidGlass } from 'quick-liquid/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
 import { asset } from '../utils/asset';
 
@@ -153,35 +152,15 @@ export default function Services() {
                      {/* Vignette Gradient Overlay (Deepens on Hover to Highlight Details) */}
                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30 group-hover:from-black/95 group-hover:via-black/75 group-hover:to-black/45 transition-colors duration-500 pointer-events-none" />
 
-                     {/* Top Floating Bar: Category Pill & Capacity Pill (Both LiquidGlass) */}
+                     {/* Top Floating Bar: Category Pill & Capacity Pill (CSS Glassmorphism) */}
                      <div className="relative z-10 flex items-center justify-between">
-                        <LiquidGlass
-                           config={{
-                              appearance: 'light',
-                              material: 'clear',
-                              dynamicLighting: true,
-                              borderRadius: 20,
-                              edgeHighlight: 0.75,
-                              specularStrength: 0.35,
-                           }}
-                           className="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.2em] font-semibold text-white shadow-md"
-                        >
+                        <span className="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.2em] font-semibold text-white bg-white/15 backdrop-blur-md border border-white/25 shadow-md">
                            {service.category}
-                        </LiquidGlass>
+                        </span>
 
-                        <LiquidGlass
-                           config={{
-                              appearance: 'light',
-                              material: 'clear',
-                              dynamicLighting: true,
-                              borderRadius: 20,
-                              edgeHighlight: 0.7,
-                              specularStrength: 0.3,
-                           }}
-                           className="px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-sans tracking-[0.15em] font-medium text-gold-radiant shadow-md"
-                        >
+                        <span className="px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-sans tracking-[0.15em] font-medium text-gold-radiant bg-black/40 backdrop-blur-md border border-gold-radiant/30 shadow-md">
                            {service.capacity}
-                        </LiquidGlass>
+                        </span>
                      </div>
 
                      {/* Bottom Card Content: Title & Extra Details Revealed on Hover */}
@@ -202,45 +181,27 @@ export default function Services() {
                               {service.description}
                            </p>
 
-                           {/* Deliverables Pills (All LiquidGlass) */}
+                           {/* Deliverables Pills (CSS Glass) */}
                            <div className="flex flex-wrap gap-1.5">
                               {service.pills.map((pill) => (
-                                 <LiquidGlass
+                                 <span
                                     key={pill}
-                                    config={{
-                                       appearance: 'light',
-                                       material: 'clear',
-                                       dynamicLighting: true,
-                                       borderRadius: 20,
-                                       edgeHighlight: 0.7,
-                                       specularStrength: 0.3,
-                                    }}
-                                    className="px-2.5 py-0.5 rounded-full text-[9px] font-sans font-medium text-white flex items-center gap-1 shadow-sm"
+                                    className="px-2.5 py-0.5 rounded-full text-[9px] font-sans font-medium text-white flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/15 shadow-sm"
                                  >
                                     <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne shrink-0" />
                                     {pill}
-                                 </LiquidGlass>
+                                 </span>
                               ))}
                            </div>
 
-                           {/* Action Button (LiquidGlass) */}
+                           {/* Action Button (CSS Glass) */}
                            <div className="pt-1">
-                              <LiquidGlass
-                                 as="button"
-                                 config={{
-                                    appearance: 'light',
-                                    material: 'clear',
-                                    dynamicLighting: true,
-                                    borderRadius: 30,
-                                    edgeHighlight: 0.8,
-                                    specularStrength: 0.35,
-                                 }}
-                                 liquidPress={{ scale: 0.95, squish: 0.03 }}
+                              <button
                                  onClick={(e) => triggerFloralBurst(e)}
-                                 className="w-full py-2 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] font-semibold text-white cursor-pointer shadow-md hover:border-gold-champagne/60 transition-colors text-center"
+                                 className="w-full py-2 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] font-semibold text-white bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 hover:border-gold-champagne/60 transition-all cursor-pointer shadow-md text-center active:scale-98"
                               >
                                  Inquire Experience
-                              </LiquidGlass>
+                              </button>
                            </div>
                         </div>
                      </div>
