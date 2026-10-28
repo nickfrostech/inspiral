@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
 import { asset } from '../utils/asset';
@@ -72,6 +73,13 @@ const SERVICES = [
 ];
 
 export default function Services() {
+   const [activeCardId, setActiveCardId] = useState(null);
+
+   const handleCardToggle = (id, e) => {
+      triggerFloralBurst(e);
+      setActiveCardId((prev) => (prev === id ? null : id));
+   };
+
    return (
       <section id="services" className="relative w-full bg-[#F8F6F0] text-charcoal pt-12 sm:pt-16 pb-10 sm:pb-12 md:pb-16">
          {/* =========================================================================
@@ -128,85 +136,120 @@ export default function Services() {
             2. SIX CARDS IN 3-COLUMN GRID (Cascading Entrance Animation & Hover Elevation)
             ========================================================================= */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-               {SERVICES.map((service, index) => (
-                  <motion.div
-                     key={service.id}
-                     initial={{ opacity: 0, y: 60, scale: 0.93 }}
-                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                     whileHover={{ y: -6 }}
-                     viewport={{ once: true, margin: '-50px' }}
-                     transition={{
-                        duration: 0.85,
-                        delay: index * 0.12,
-                        ease: [0.16, 1, 0.3, 1],
-                     }}
-                     className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 hover:border-gold-champagne/60 shadow-md hover:shadow-2xl transition-all duration-500 h-[320px] sm:h-[360px] md:h-[385px] flex flex-col justify-between p-3.5 sm:p-5 md:p-6 select-none cursor-pointer"
-                  >
-                     {/* Full Bleed Background Image with Smooth Zoom */}
-                     <img
-                        src={service.image}
-                        alt={service.alt}
-                        className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                     />
+               {SERVICES.map((service, index) => {
+                  const isExpanded = activeCardId === service.id;
+                  return (
+                     <motion.div
+                        key={service.id}
+                        initial={{ opacity: 0, y: 60, scale: 0.93 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        whileHover={{ y: -6 }}
+                        viewport={{ once: true, margin: '-50px' }}
+                        transition={{
+                           duration: 0.85,
+                           delay: index * 0.12,
+                           ease: [0.16, 1, 0.3, 1],
+                        }}
+                        onClick={(e) => handleCardToggle(service.id, e)}
+                        onKeyDown={(e) => {
+                           if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              handleCardToggle(service.id, e);
+                           }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-expanded={isExpanded}
+                        className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 h-[320px] sm:h-[360px] md:h-[385px] flex flex-col justify-between p-3.5 sm:p-5 md:p-6 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-champagne/40 ${
+                           isExpanded
+                              ? 'border border-gold-champagne/80 shadow-2xl -translate-y-1 sm:-translate-y-1.5'
+                              : 'border border-black/10 hover:border-gold-champagne/60 shadow-md hover:shadow-2xl'
+                        }`}
+                     >
+                        {/* Full Bleed Background Image with Smooth Zoom */}
+                        <img
+                           src={service.image}
+                           alt={service.alt}
+                           className={`absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out ${
+                              isExpanded ? 'scale-105' : 'group-hover:scale-105'
+                           }`}
+                        />
 
-                     {/* Vignette Gradient Overlay (Deepens on Hover to Highlight Details) */}
-                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30 group-hover:from-black/95 group-hover:via-black/75 group-hover:to-black/45 transition-colors duration-500 pointer-events-none" />
+                        {/* Vignette Gradient Overlay (Deepens on Hover or Tap to Highlight Details) */}
+                        <div
+                           className={`absolute inset-0 bg-gradient-to-t transition-colors duration-500 pointer-events-none ${
+                              isExpanded
+                                 ? 'from-black/95 via-black/75 to-black/45'
+                                 : 'from-black/90 via-black/40 to-black/30 group-hover:from-black/95 group-hover:via-black/75 group-hover:to-black/45'
+                           }`}
+                        />
 
-                     {/* Top Floating Bar: Category Pill & Capacity Pill (CSS Glassmorphism) */}
-                     <div className="relative z-10 flex items-center justify-between">
-                        <span className="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.2em] font-semibold text-white bg-white/15 backdrop-blur-md border border-white/25 shadow-md">
-                           {service.category}
-                        </span>
+                        {/* Top Floating Bar: Category Pill & Capacity Pill (CSS Glassmorphism) */}
+                        <div className="relative z-10 flex items-center justify-between">
+                           <span className="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.2em] font-semibold text-white bg-white/15 backdrop-blur-md border border-white/25 shadow-md">
+                              {service.category}
+                           </span>
 
-                        <span className="px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-sans tracking-[0.15em] font-medium text-gold-radiant bg-black/40 backdrop-blur-md border border-gold-radiant/30 shadow-md">
-                           {service.capacity}
-                        </span>
-                     </div>
-
-                     {/* Bottom Card Content: Title & Extra Details Revealed on Hover */}
-                     <div className="relative z-10 space-y-2">
-                        {/* Always Visible: Title & Subtitle */}
-                        <div className="space-y-0.5">
-                           <h3 className="font-serif italic font-normal text-xl sm:text-2xl text-white tracking-tight leading-tight">
-                              {service.title}
-                           </h3>
-                           <p className="font-sans text-[11px] text-gold-radiant/90 font-light line-clamp-1">
-                              {service.subtitle}
-                           </p>
+                           <span className="px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-sans tracking-[0.15em] font-medium text-gold-radiant bg-black/40 backdrop-blur-md border border-gold-radiant/30 shadow-md">
+                              {service.capacity}
+                           </span>
                         </div>
 
-                        {/* Extra Details Revealed on Hover (Smooth Expand Drawer) */}
-                        <div className="space-y-2.5 max-h-0 opacity-0 group-hover:max-h-[200px] group-hover:opacity-100 transition-all duration-400 ease-out overflow-hidden pointer-events-none group-hover:pointer-events-auto">
-                           <p className="text-[11px] font-sans text-ivory/85 leading-relaxed font-light pt-0.5 line-clamp-2">
-                              {service.description}
-                           </p>
+                        {/* Bottom Card Content: Title & Extra Details Revealed on Hover or Tap */}
+                        <div className="relative z-10 space-y-2">
+                           {/* Always Visible: Title & Subtitle */}
+                           <div className="space-y-0.5">
+                              <h3 className="font-serif italic font-normal text-xl sm:text-2xl text-white tracking-tight leading-tight">
+                                 {service.title}
+                              </h3>
+                              <p className="font-sans text-[11px] text-gold-radiant/90 font-light line-clamp-1">
+                                 {service.subtitle}
+                              </p>
+                           </div>
 
-                           {/* Deliverables Pills (CSS Glass) */}
-                           <div className="flex flex-wrap gap-1.5">
-                              {service.pills.map((pill) => (
-                                 <span
-                                    key={pill}
-                                    className="px-2.5 py-0.5 rounded-full text-[9px] font-sans font-medium text-white flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/15 shadow-sm"
+                           {/* Extra Details Revealed on Hover or Tap (Smooth Expand Drawer) */}
+                           <div
+                              className={`space-y-2.5 transition-all duration-400 ease-out overflow-hidden ${
+                                 isExpanded
+                                    ? 'max-h-[220px] opacity-100 pointer-events-auto'
+                                    : 'max-h-0 opacity-0 pointer-events-none group-hover:max-h-[220px] group-hover:opacity-100 group-hover:pointer-events-auto'
+                              }`}
+                           >
+                              <p className="text-[11px] font-sans text-ivory/85 leading-relaxed font-light pt-0.5 line-clamp-2">
+                                 {service.description}
+                              </p>
+
+                              {/* Deliverables Pills (CSS Glass) */}
+                              <div className="flex flex-wrap gap-1.5">
+                                 {service.pills.map((pill) => (
+                                    <span
+                                       key={pill}
+                                       className="px-2.5 py-0.5 rounded-full text-[9px] font-sans font-medium text-white flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/15 shadow-sm"
+                                    >
+                                       <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne shrink-0" />
+                                       {pill}
+                                    </span>
+                                 ))}
+                              </div>
+
+                              {/* Action Button (CSS Glass) */}
+                              <div className="pt-1">
+                                 <button
+                                    onClick={(e) => {
+                                       e.stopPropagation();
+                                       triggerFloralBurst(e);
+                                       document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="w-full py-2 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] font-semibold text-white bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 hover:border-gold-champagne/60 transition-all cursor-pointer shadow-md text-center active:scale-98"
                                  >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne shrink-0" />
-                                    {pill}
-                                 </span>
-                              ))}
-                           </div>
-
-                           {/* Action Button (CSS Glass) */}
-                           <div className="pt-1">
-                              <button
-                                 onClick={(e) => triggerFloralBurst(e)}
-                                 className="w-full py-2 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] font-semibold text-white bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 hover:border-gold-champagne/60 transition-all cursor-pointer shadow-md text-center active:scale-98"
-                              >
-                                 Inquire Experience
-                              </button>
+                                    Inquire Experience
+                                 </button>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </motion.div>
-               ))}
+                     </motion.div>
+                  );
+               })}
             </div>
          </div>
       </section>
