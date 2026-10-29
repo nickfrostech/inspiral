@@ -1,26 +1,25 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 const SCENES = [
    {
       id: 'beach',
-      src: asset('/hero-beach.jpg'),
+      src: '/hero-beach.jpg',
       alt: 'Luxury Beach Wedding by Inspiral Events',
       panFrom: '0%',
       panTo: '-5%',
    },
    {
       id: 'hall',
-      src: asset('/hero-hall.jpg'),
+      src: '/hero-hall.jpg',
       alt: 'Grand Banquet Hall by Inspiral Events',
       panFrom: '-5%',
       panTo: '0%',
    },
    {
       id: 'party',
-      src: asset('/hero-party.jpg'),
+      src: '/hero-party.jpg',
       alt: 'Night Gala & Party Celebration by Inspiral Events',
       panFrom: '0%',
       panTo: '-5%',
@@ -114,7 +113,7 @@ export default function Hero() {
             <div className="mt-6 sm:mt-10 max-w-2xl">
                <div className="border border-white/40 px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-full backdrop-blur-xs">
                   <p className="text-[11px] sm:text-xs md:text-sm font-sans font-light tracking-[0.16em] sm:tracking-[0.2em] text-ivory/95 uppercase">
-                     Nigeria&apos;s Premier Luxury Wedding &amp; Event Management Atelier
+                     Nigeria&apos;s Premier Event Planning, management &amp; Guest Management Company
                   </p>
                </div>
             </div>

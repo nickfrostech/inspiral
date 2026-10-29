@@ -1,5 +1,4 @@
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 export default function Footer() {
    const scrollToTop = (e) => {
@@ -17,7 +16,7 @@ export default function Footer() {
                   <div className="flex items-center gap-3">
                      <div className="w-8 h-8 relative select-none">
                         <img
-                           src={asset('/flower-accent.png')}
+                           src="/flower-accent.png"
                            alt=""
                            className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
                         />

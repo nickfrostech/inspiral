@@ -2,7 +2,7 @@
  * Resolves static asset paths relative to the configured Vite BASE_URL.
  * Ensures images resolve correctly on GitHub Pages (/inspiral/) and local dev (/).
  */
-export function asset(path) {
+export function path {
    if (!path) return '';
    if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
       return path;

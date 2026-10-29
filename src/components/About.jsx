@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useSpring } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 const METRICS = [
-   { target: 10, suffix: '+', label: 'Years of Excellence', sub: 'Founded in Lagos, 2014' },
-   { target: 650, suffix: '+', label: 'Events Produced', sub: 'Lagos, Abuja & Beyond' },
-   { target: 45, suffix: '+', label: 'Partner Venues', sub: 'Eko Hotel, Landmark, Hilton' },
+   { target: 6, suffix: '+', label: 'Years of Excellence', sub: 'Founded in Lagos, 2020' },
+   { target: 50, suffix: '+', label: 'Events Produced', sub: 'Radisson Blu Ikeja & VI, Oriental Hotel, Eko Hotel, Civic Centre' },
+   { target: 5, suffix: '+', label: 'Partner Venues', sub: 'Eko Hotel, Landmark, Hilton' },
    { target: 100, suffix: '%', label: 'On-Time Execution', sub: 'Zero stress, zero delays' },
 ];
 
@@ -44,18 +43,18 @@ function StatCounter({ target, suffix }) {
 const PILLARS = [
    {
       num: '01',
-      title: 'Scenography & Decor',
-      desc: 'Bespoke floral installations, kinetic stage lighting, and luxury entrance arches.',
+      title: 'Professional Experiance',
+      desc: 'Executed over 30 corporate and social events end-to-end.',
    },
    {
       num: '02',
-      title: 'Protocol & VIP Security',
-      desc: 'Instant QR code verification, trained bouncers, and zero crowd issues.',
+      title: 'Clear Communication',
+      desc: 'We clearly communicate and update our client at every stage of the engagement.',
    },
    {
       num: '03',
-      title: 'Power & Production',
-      desc: 'Heavy-duty backup generators, concert-grade sound, and timeline control.',
+      title: 'Excelence Team',
+      desc: 'We pride ourselves in excellence as we believe the guests experience hugely rests on us and every detail.',
    },
 ];
 
@@ -91,7 +90,7 @@ export default function About() {
                   <div className="grid grid-cols-2 lg:grid-cols-4">
                      {METRICS.map((metric, idx) => (
                         <div
-                           key={metric.label}
+                           key={idx}
                            className={`p-3 sm:p-5 md:p-8 text-center space-y-1 ${STAT_BORDERS[idx]}`}
                         >
                            <p className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gold-radiant font-light tracking-tight">
@@ -111,7 +110,7 @@ export default function About() {
                {/* Botanical Magnolia Flower Accent (Sprouting & Blooming organically from root to top) */}
                <div className="absolute -top-12 -right-4 sm:-top-16 sm:-right-8 md:-top-20 md:-right-10 w-28 sm:w-36 md:w-44 pointer-events-none z-20 select-none">
                   <motion.img
-                     src={asset('/flower-accent.png')}
+                     src="/flower-accent.png"
                      alt="Botanical Flower Accent"
                      initial={{
                         opacity: 0,
@@ -157,12 +156,13 @@ export default function About() {
                         The Atelier &amp; Philosophy
                      </p>
                      <h3 className="font-serif italic font-normal text-3xl sm:text-4xl md:text-5xl leading-tight text-white tracking-tight">
-                        Crafting Unforgettable Nigerian Celebrations.
+                        Crafting Unforgettable Events.
                      </h3>
                   </div>
 
                   <p className="text-sm md:text-base font-light text-ivory/85 leading-relaxed font-sans max-w-xl">
-                     We bring world-class planning and production to your milestone events—from luxury traditional and white weddings to high-profile corporate galas. Zero stress, perfect execution.
+                     Inspiral events specializes in event planning, event management and cordination, guest and access management. We deliver corporate events, weddings, birthdays from intimate celebrations to large gatherings.
+                     We are a team of professionals with discipline, expertise and resources to execute a well organized event that runs smoothly.
                   </p>
 
                   {/* The Three Pillars using High-Performance CSS Glass */}
@@ -206,7 +206,7 @@ export default function About() {
                >
                   <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 w-full h-full min-h-[300px] sm:min-h-[360px] lg:min-h-0">
                      <img
-                        src={asset('/about-atelier.jpg')}
+                        src="/about-atelier.jpg"
                         alt="Inspiral Events Atelier Curation"
                         className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
                      />

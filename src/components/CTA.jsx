@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 export default function CTA() {
    return (
@@ -20,7 +19,7 @@ export default function CTA() {
                {/* Flower on Top Left - Scaled & Positioned Cleanly */}
                <div className="absolute top-3 left-3 sm:top-5 sm:left-5 w-9 h-9 sm:w-14 sm:h-14 md:w-16 md:h-16 select-none pointer-events-none">
                   <img
-                     src={asset('/flower-accent.png')}
+                     src="/flower-accent.png"
                      alt="Inspiral Floral Accent"
                      className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]"
                   />
