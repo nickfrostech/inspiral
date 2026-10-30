@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from './ThemeContext';
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 const NAV_LINKS = [
    { name: 'Home', target: null },
@@ -92,7 +91,7 @@ export default function Navbar() {
                   }`}
                >
                   <img
-                     src={asset('/flower-accent.png')}
+                     src={'/flower-accent.png'}
                      alt=""
                      className="w-7 h-7 object-contain filter drop-shadow-[0_0_6px_rgba(212,175,55,0.4)]"
                   />
@@ -114,11 +113,11 @@ export default function Navbar() {
                   <div className="hidden lg:grid grid-cols-3 items-center w-full">
                      {/* Left Links */}
                      <nav className="flex items-center justify-start gap-1">
-                        {NAV_LINKS.slice(0, 3).map((item) => {
+                        {NAV_LINKS.slice(0, 3).map((item, idx) => {
                            const isActive = activeItem === item.name;
                            return (
                               <button
-                                 key={item.name}
+                                 key={idx}
                                  onClick={(e) => scrollToSection(item.target, item.name, e)}
                                  className={`relative px-4 py-2 rounded-full text-xs font-sans uppercase tracking-[0.16em] font-medium transition-all cursor-pointer ${
                                     isActive ? 'text-white font-semibold' : 'text-ivory/80 hover:text-white'
@@ -156,11 +155,11 @@ export default function Navbar() {
 
                      {/* Right Links & Theme Toggle */}
                      <div className="flex items-center justify-end gap-2">
-                        {NAV_LINKS.slice(3).map((item) => {
+                        {NAV_LINKS.slice(3).map((item, idx) => {
                            const isActive = activeItem === item.name;
                            return (
                               <button
-                                 key={item.name}
+                                 key={idx}
                                  onClick={(e) => scrollToSection(item.target, item.name, e)}
                                  className={`relative px-4 py-2 rounded-full text-xs font-sans uppercase tracking-[0.16em] font-medium transition-all cursor-pointer ${
                                     isActive ? 'text-white font-semibold' : 'text-ivory/80 hover:text-white'
@@ -204,9 +203,9 @@ export default function Navbar() {
                {isScrolled && (
                   <div className="hidden lg:flex items-center gap-1.5">
                      <nav className="flex items-center gap-1">
-                        {NAV_LINKS.map((item) => (
+                        {NAV_LINKS.map((item, idx) => (
                            <button
-                              key={item.name}
+                              key={idx}
                               onClick={(e) => scrollToSection(item.target, item.name, e)}
                               className="px-3.5 py-1.5 rounded-full text-xs font-sans uppercase tracking-[0.14em] text-ivory/80 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
                            >
@@ -288,9 +287,9 @@ export default function Navbar() {
                      className="w-full max-w-lg mx-auto rounded-2xl sm:rounded-3xl bg-[#0A2318]/98 border border-[#8A7332]/40 p-4 sm:p-6 shadow-2xl backdrop-blur-2xl space-y-4 my-auto shrink-0"
                   >
                      <nav className="flex flex-col space-y-1">
-                        {NAV_LINKS.map((item) => (
+                        {NAV_LINKS.map((item, idx) => (
                            <button
-                              key={item.name}
+                              key={idx}
                               onClick={(e) => scrollToSection(item.target, item.name, e)}
                               className="px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-left font-serif text-base sm:text-lg tracking-wider text-[#FAF9F5] hover:text-gold-radiant hover:bg-white/5 transition-all flex items-center justify-between cursor-pointer"
                            >

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 const SERVICES = [
    {
@@ -10,7 +9,7 @@ const SERVICES = [
       title: 'White & Traditional Weddings',
       subtitle: 'Grand ballroom receptions & vibrant traditional ceremonies',
       description: 'From Alaga and Igbankwu traditions to fairy-tale white wedding receptions. Flawless guest verification, stage decor, and timeline coordination.',
-      image: asset('/hero-beach.jpg'),
+      image: '/hero-beach.jpg',
       alt: 'Luxury Nigerian Wedding Production by Inspiral Events',
       capacity: '200 – 1,500 Guests',
       pills: ['Grand Stage Decor', 'VIP Table Service', 'Zero Gatecrashers'],
@@ -21,7 +20,7 @@ const SERVICES = [
       title: 'High-Society Owambes & Galas',
       subtitle: 'Exclusive milestone celebrations & black-tie banquets',
       description: 'Breathtaking hall transformation, live band and DJ acoustic setup, premium drinks service, and seamless guest hospitality.',
-      image: asset('/hero-party.jpg'),
+      image: '/hero-party.jpg',
       alt: 'Luxury Nigerian Gala and Owambe by Inspiral Events',
       capacity: '150 – 1,200 Guests',
       pills: ['Immersive Lighting', 'Live Band Sound', 'VIP Security'],
@@ -32,7 +31,7 @@ const SERVICES = [
       title: 'Corporate Summits & State Galas',
       subtitle: 'Forums, product launches & end-of-year dinners',
       description: 'Broadcast-quality stage setup, multi-screen LED walls, protocol management for dignitaries, and guaranteed backup power.',
-      image: asset('/hero-hall.jpg'),
+      image: '/hero-hall.jpg',
       alt: 'Corporate Summit and Conference by Inspiral Events',
       capacity: '300 – 2,500+ Delegates',
       pills: ['LED Stage Walls', 'Dignitary Protocol', '24/7 Power Backup'],
@@ -43,7 +42,7 @@ const SERVICES = [
       title: 'Brand Runways & Activations',
       subtitle: 'Fashion debuts & experiential luxury showcases',
       description: 'Custom runway construction, media walls, VIP hospitality, and high-impact press coverage flow.',
-      image: asset('/services-activation.jpg'),
+      image: '/services-activation.jpg',
       alt: 'Fashion Runway Activation by Inspiral Events',
       capacity: '200 – 1,000 Attendees',
       pills: ['Custom Runway', 'Red Carpet Media', 'Influencer Lounge'],
@@ -54,7 +53,7 @@ const SERVICES = [
       title: 'Luxury Banquets & Mixology Bars',
       subtitle: 'Fine dining, gourmet small chops & cocktail lounges',
       description: 'Coordinating premier Nigerian and continental caterers, bespoke tablescapes, champagne service, and trained uniformed ushers.',
-      image: asset('/services-gastronomy.jpg'),
+      image: '/services-gastronomy.jpg',
       alt: 'Luxury Nigerian Event Banquet Table by Inspiral Events',
       capacity: '50 – 800 Guests',
       pills: ['Gourmet Plating', 'Cocktail Mixology', 'Trained Ushers'],
@@ -65,7 +64,7 @@ const SERVICES = [
       title: 'Milestone Birthdays & Anniversaries',
       subtitle: '50th, 60th & 70th jubilee celebrations',
       description: 'Unforgettable milestone parties produced with personalized decor, tribute videos, surprise guest performances, and indoor pyro.',
-      image: asset('/hero-gala.jpg'),
+      image: '/hero-gala.jpg',
       alt: 'Milestone Jubilee Celebration by Inspiral Events',
       capacity: '100 – 1,000 Guests',
       pills: ['Special Effects', 'Live Entertainment', 'Guest Itineraries'],
@@ -221,9 +220,9 @@ export default function Services() {
 
                               {/* Deliverables Pills (CSS Glass) */}
                               <div className="flex flex-wrap gap-1.5">
-                                 {service.pills.map((pill) => (
+                                 {service.pills.map((pill, idx) => (
                                     <span
-                                       key={pill}
+                                       key={idx}
                                        className="px-2.5 py-0.5 rounded-full text-[9px] font-sans font-medium text-white flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/15 shadow-sm"
                                     >
                                        <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne shrink-0" />

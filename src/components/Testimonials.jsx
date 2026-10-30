@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 const TESTIMONIALS = [
    {
@@ -10,8 +9,8 @@ const TESTIMONIALS = [
          'Managing over 700 guests without a single gatecrasher was something we thought was impossible in Lagos. Inspiral made our wedding completely stress-free. Everything started right on time.',
       name: 'Tunde & Folake Adeleke',
       event: 'Traditional & White Wedding, Victoria Island, Lagos',
-      avatar: asset('/avatar-1.jpg'),
-      rating: 5,
+      avatar: '/avatar-1.jpg',
+      rating: 2,
    },
    {
       id: 2,
@@ -19,8 +18,8 @@ const TESTIMONIALS = [
          'Handling diplomats, governors, and partners requires serious order. Inspiral managed protocol, VIP security, and our stage setup with total class.',
       name: 'Dr. Amina Bello',
       event: 'Annual Foundation Gala, Transcorp Hilton, Abuja',
-      avatar: asset('/avatar-2.jpg'),
-      rating: 5,
+      avatar: '/avatar-2.jpg',
+      rating: 3,
    },
    {
       id: 3,
@@ -28,7 +27,7 @@ const TESTIMONIALS = [
          'The decor, lighting, and sound completely transformed the venue. My guests are still talking about how well-organized the party was. Worth every kobo.',
       name: 'Chief Emeka Okoli',
       event: '50th Birthday Celebration, Eko Hotel, Lagos',
-      avatar: asset('/avatar-3.jpg'),
+      avatar: '/avatar-3.jpg',
       rating: 5,
    },
    {
@@ -37,8 +36,8 @@ const TESTIMONIALS = [
          'Boat logistics, beach setup, power backup, and food service were coordinated without a single issue. Inspiral handled our entire weekend flawlessly.',
       name: 'Osas & Beverly Ighodaro',
       event: 'Destination Beach Wedding, Ilashe, Lagos',
-      avatar: asset('/avatar-4.jpg'),
-      rating: 5,
+      avatar: '/avatar-4.jpg',
+      rating: 1,
    },
 ];
 
@@ -62,7 +61,7 @@ export default function Testimonials() {
          paginate(1);
       }, 6500);
       return () => clearInterval(timer);
-   }, [paginate]);
+   }, [currentIndex, paginate]);
 
    const current = TESTIMONIALS[currentIndex];
 
@@ -126,27 +125,33 @@ export default function Testimonials() {
                   >
                      {/* Star Rating of the current testimonial on the card */}
                      <div className="flex items-center gap-1.5 text-gold-radiant mb-2.5 sm:mb-4">
-                        {[...Array(current.rating)].map((_, i) => (
-                           <svg
-                              key={i}
-                              className="w-3.5 h-3.5 sm:w-5 sm:h-5 fill-current filter drop-shadow-[0_0_6px_rgba(229,184,66,0.45)]"
-                              viewBox="0 0 20 20"
-                           >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                           </svg>
-                        ))}
+                        {[...Array(5)].map((_, i) => {
+                           const isFilled = i < current.rating;
+                           return (
+                              <svg
+                                 key={i}
+                                 className={`w-3.5 h-3.5 sm:w-5 sm:h-5 ${isFilled
+                                       ? 'fill-current filter drop-shadow-[0_0_6px_rgba(229,184,66,0.45)]'
+                                       : 'text-gray-300 fill-none stroke-current'
+                                    }`}
+                                 viewBox="0 0 20 20"
+                              >
+                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                           );
+                        })}
                      </div>
 
                      {/* The Quote with Flower at the beginning and end */}
                      <p className="font-serif italic text-sm sm:text-lg md:text-xl lg:text-2xl text-[#FAF9F5] leading-relaxed font-light">
                         <img
-                           src={asset('/flower-accent.png')}
+                           src={'/flower-accent.png'}
                            alt=""
                            className="inline-block w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain mr-1.5 sm:mr-2 -mt-1 select-none filter drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
                         />
                         {current.quote}
                         <img
-                           src={asset('/flower-accent.png')}
+                           src={'/flower-accent.png'}
                            alt=""
                            className="inline-block w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain ml-1.5 sm:ml-2 -mt-1 select-none filter drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
                         />

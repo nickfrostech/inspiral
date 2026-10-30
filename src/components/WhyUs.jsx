@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { triggerFloralBurst } from '../utils/floweringBurst';
-import { asset } from '../utils/asset';
 
 const WHY_US_FEATURES = [
    {
@@ -8,7 +7,7 @@ const WHY_US_FEATURES = [
       title: 'ELIMINATE GATECRASHERS',
       description:
          'Unique QR codes for every guest. No code, no entry. Take back control of your exclusive events.',
-      image: asset('/whyus-couple.jpg'),
+      image: '/whyus-couple.jpg',
       alt: 'Exclusive Guest Attendance by Inspiral Events',
    },
    {
@@ -16,7 +15,7 @@ const WHY_US_FEATURES = [
       title: 'WHATSAPP & SMS INVITES',
       description:
          "Send beautiful branded invitations directly to guests' phones.",
-      image: asset('/whyus-invite.jpg'),
+      image: '/whyus-invite.jpg',
       alt: 'Luxury Digital Mobile Invitation by Inspiral Events',
    },
    {
@@ -24,7 +23,7 @@ const WHY_US_FEATURES = [
       title: 'SEAMLESS GUEST CHECK-IN',
       description:
          'Instant digital scan and verification. Zero lines, zero friction.',
-      image: asset('/whyus-checkin.jpg'),
+      image: '/whyus-checkin.jpg',
       alt: 'VIP Reception and Instant QR Verification by Inspiral Events',
    },
    {
@@ -32,7 +31,7 @@ const WHY_US_FEATURES = [
       title: 'TAKE CONTROL',
       description:
          "Know exactly who's arrived, who hasn't, and manage multiple passes per guest effortlessly.",
-      image: asset('/whyus-control.jpg'),
+      image: '/whyus-control.jpg',
       alt: 'Event Attendance Analytics and Coordinator Control by Inspiral Events',
    },
 ];
@@ -231,7 +230,7 @@ function WeddingRingPortal({ side = 'left' }) {
          title="Wedding Band Portal — Signifying Celebration & Union"
       >
          <img
-            src={asset(isLeft ? '/ring-left-filled.png' : '/ring-right-filled.png')}
+            src={isLeft ? '/ring-left-filled.png' : '/ring-right-filled.png'}
             alt="Luxury Diamond Wedding Ring Portal"
             className="h-full w-auto object-contain pointer-events-none select-none"
          />
